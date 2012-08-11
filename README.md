@@ -1,5 +1,6 @@
-# Brunch with Chaplin ( Matt Ma edition based on [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin) )
-![](https://a248.e.akamai.net/camo.github.com/b7ebb8bbcec7938940cf8e9c441124c3bddafd3a/687474703a2f2f662e636c2e6c792f6974656d732f34373039326b30423141334a317a3166306b34362f6277632e706e67)
+# Brunch with Chaplin and Node ( Matt Ma edition based on [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin) )
+
+Huge Thanks to [Paul Miller](https://github.com/paulmillr) for making the project -- [Brunch](http://brunch.io/)
 
 Brunch with Chaplin is a skeleton (boilerplate) for [Brunch](http://brunch.io)
 based on [Chaplin](https://github.com/chaplinjs/chaplin) framework,
