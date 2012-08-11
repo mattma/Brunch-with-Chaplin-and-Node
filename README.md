@@ -1,15 +1,17 @@
-# Brunch with Chaplin ( Matt Ma Customized )
+# Brunch with Chaplin ( Matt Ma edition based on [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin) )
 ![](https://a248.e.akamai.net/camo.github.com/b7ebb8bbcec7938940cf8e9c441124c3bddafd3a/687474703a2f2f662e636c2e6c792f6974656d732f34373039326b30423141334a317a3166306b34362f6277632e706e67)
 
 Brunch with Chaplin is a skeleton (boilerplate) for [Brunch](http://brunch.io)
-based on [Chaplin](https://github.com/chaplinjs/chaplin) framework.
+based on [Chaplin](https://github.com/chaplinjs/chaplin) framework,
+[Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin) is the default application skeleton for Brunch, so you don't need to specify `--skeleton` option for the command.
 
 Requires Brunch 1.4+.
 
 ## Getting started
-* Create new project via executing `brunch new <project name>`.
-Brunch with chaplin is a default application skeleton for Brunch,
-so you don't need to specify `--skeleton` option for the command.
+* Create new project via executing
+
+`brunch new <project name> -s github://paulmillr/brunch-with-chaplin-js || local-path`.
+
 * Build the project with `brunch b` or `brunch w`.
 * Open the `public/` dir to see the result.
 * Write your code.
@@ -17,8 +19,6 @@ so you don't need to specify `--skeleton` option for the command.
 Example application built with the skeleton:
 [Ost.io](https://github.com/paulmillr/ostio).
 
-See [Chaplin github page](https://github.com/chaplinjs/chaplin) for
-documentation.
 
 ## Difference from Chaplin Boilerplate
 [Chaplin Boilerplate](https://github.com/chaplinjs/chaplin-boilerplate)
@@ -48,6 +48,8 @@ and Twitter
 
 ## License
 The MIT license.
+
+Copyright (c) 2012 Matt Ma (http://mattmadesign.com/)
 
 Copyright (c) 2012 Paul Miller (http://paulmillr.com/)
 
