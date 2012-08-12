@@ -1,3 +1,3 @@
 exports.auth =
-	username: "mattma"
-	password: "bestcoder"
+	username: "username"
+	password: "password"
