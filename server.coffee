@@ -38,7 +38,7 @@ conn = new (cradle.Connection)(
 		password: db_access.auth.password
 )
 
-db = conn.database db_access.name
+db = conn.database db_access.auth.name
 
 db.exists( (err, exists) ->
 	if ( err )
