@@ -1,9 +1,9 @@
-require('coffee-script')
+# require('coffee-script')
 express = require 'express'
 routes = require './private/routes/routes'
-cradle = require 'cradle'
-db_access = require './private/db/auth'
-# _ = require("underscore")
+#cradle = require 'cradle'
+#db_access = require './private/db/auth'
+#_ = require("underscore")
 
 app = module.exports = express()
 
@@ -23,7 +23,7 @@ app.configure( ->
 )
 
 app.configure 'development', ->
-	app.use express.errorHandler({ dumpExceptions: true, showStack: true })
+	app.use express.errorHandler { dumpExceptions: true, showStack: true }
 
 app.configure 'production', ->
 	app.use express.errorHandler()
@@ -55,7 +55,7 @@ app.configure 'production', ->
 # Routes
 app.get '/', routes.home  #routes.home: /routes/routes.js => exports.home()
 
-app.listen PORT, ->
-	console.log PUBLIC_PATH
-	console.log "Express server listening on port %d in %s mode", process.env.VMC_APP_PORT or 3000, app.settings.env
+app.startServer =  ->
+	app.listen PORT, ->
+		console.log "Express server listening on port %d in %s mode", process.env.VMC_APP_PORT or 3000, app.settings.env
 

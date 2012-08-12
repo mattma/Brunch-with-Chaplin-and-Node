@@ -28,8 +28,10 @@ exports.config =
 		templates:
 			joinTo: 'javascripts/app.js'
 
-	modules.wrapper: 'amd'
-	modules.definition: false
+	modules:
+		wrapper: 'amd'
+		definition: false
+
 	server:
 		path: 'server.coffee'
 		port: 3000
