@@ -21,7 +21,7 @@ Example application built with the skeleton:
 [Ost.io](https://github.com/paulmillr/ostio).
 
 
-## Difference from [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin)
+## Difference from [Chaplin Boilerplate](https://github.com/chaplinjs/chaplin-boilerplate)
 
 [Chaplin Boilerplate](https://github.com/chaplinjs/chaplin-boilerplate)
 is a official boilerplate all for chaplin. This skeleton is almost the same,
