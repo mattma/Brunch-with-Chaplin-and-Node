@@ -1,4 +1,4 @@
-# Brunch with Chaplin and Node ( based on [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin) )
+# Brunch with Chaplin and Node (based on [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin))
 
 Huge Thanks to [Paul Miller](https://github.com/paulmillr) for making the project -- [Brunch](http://brunch.io/)
 
@@ -31,7 +31,7 @@ except a few changes:
 * Added authentication abstractions (`SessionController`, `LoginView` etc).
 * CommonJS is used instead of AMD, because it's easier to use & debug.
 
-## Difference from [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin)_
+## Difference from [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin)
 
 * Updated to jQuery 1.8.0
 * added [json2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js) to take care JSON object
