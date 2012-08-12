@@ -2,36 +2,43 @@ exports.config =
 	# See http://brunch.readthedocs.org/en/latest/config.html for documentation.
 	files:
 		javascripts:
+			# Will be included in /public/scripts folder
 			joinTo:
-				'javascripts/app.js': /^app/
-				'javascripts/vendor.js': /^vendor/
-				'test/javascripts/test.js': /^test(\/|\\)(?!vendor)/
-				'test/javascripts/test-vendor.js': /^test(\/|\\)(?=vendor)/
+				'scripts/app.js': /^app/
+				'scripts/vendor.js': /^vendor/
+				'test/scripts/test.js': /^test(\/|\\)(?!vendor)/
+				'test/scripts/test-vendor.js': /^test(\/|\\)(?=vendor)/
 			order:
 				# Files in `vendor` directories are compiled before other files
 				# even if they aren't specified in order.before.
+				# chaplin will always be loaded the last
 				before: [
 					'vendor/scripts/console-helper.js',
-					'vendor/scripts/jquery-1.7.2.js',
-					'vendor/scripts/underscore-1.3.3.js',
+					'vendor/scripts/jquery-1.8.0.js',
+					'vendor/scripts/lodash-0.4.2.js',
 					'vendor/scripts/backbone-0.9.2.js'
 				]
 
 		stylesheets:
+			# Will be included in /public/styles folder
 			joinTo:
-				'stylesheets/app.css': /^(app|vendor)/
-				'test/stylesheets/test.css': /^test/
+				'styles/app.css': /^(app|vendor)/
+				'test/styles/test.css': /^test/
 			order:
 				before: ['vendor/styles/normalize.css']
-				after: ['vendor/styles/helpers.css']
+				#after: ['vendor/styles/helpers.css']
 
 		templates:
-			joinTo: 'javascripts/app.js'
+			# Will be included in /public/scripts folder
+			# All scripts from the /app folder
+			joinTo: 'scripts/app.js'
 
-	modules.wrapper: 'amd'
-	modules.definition: false
+	modules:
+		wrapper: 'amd'
+		definition: false
+
 	server:
 		path: 'server.coffee'
 		port: 3000
-		base: '/private'
-		run: yes
+		base: ''
+		run: no
