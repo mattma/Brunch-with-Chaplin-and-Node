@@ -11,7 +11,7 @@ Requires Brunch 1.4+.
 ## Getting started
 * Create new project via executing
 
-`brunch new <project name> -s github://paulmillr/brunch-with-chaplin-js || local-path`.
+`brunch new <project name> -s https://github.com/mattma/Brunch-with-Chaplin-and-Node.git || local-path`.
 
 * Build the project with `brunch b` or `brunch w`.
 * Open the `public/` dir to see the result.
@@ -21,7 +21,8 @@ Example application built with the skeleton:
 [Ost.io](https://github.com/paulmillr/ostio).
 
 
-## Difference from Chaplin Boilerplate
+## Difference from [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin)
+
 [Chaplin Boilerplate](https://github.com/chaplinjs/chaplin-boilerplate)
 is a official boilerplate all for chaplin. This skeleton is almost the same,
 except a few changes:
@@ -29,6 +30,12 @@ except a few changes:
 * Added Header.
 * Added authentication abstractions (`SessionController`, `LoginView` etc).
 * CommonJS is used instead of AMD, because it's easier to use & debug.
+
+Difference from [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin)
+
+* Updated to jQuery 1.8.0
+* Added [lodash-0.4.2.js](http://lodash.com) instead of underscore 1.3.3
+* Do not include console-helper.js by default when project builds
 
 ## Features
 * HTML5Boilerplate 3.0.3 html & css are included.

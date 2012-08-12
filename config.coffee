@@ -1,5 +1,8 @@
 exports.config =
 	# See http://brunch.readthedocs.org/en/latest/config.html for documentation.
+	paths:
+		assets: 'vendor/assets'
+
 	files:
 		javascripts:
 			# Will be included in /public/scripts folder
@@ -24,17 +27,20 @@ exports.config =
 				'styles/app.css': /^(app|vendor)/
 				'test/styles/test.css': /^test/
 			order:
-				before: ['vendor/styles/normalize.css']
-				#after: ['vendor/styles/helpers.css']
+				before: [
+					'vendor/styles/reset.css'
+					#'vendor/styles/sass/base.sass'
+				]
+				#after: ['vendor/styles/application.css']
 
 		templates:
 			# Will be included in /public/scripts folder
 			# All scripts from the /app folder
 			joinTo: 'scripts/app.js'
 
-	modules:
-		wrapper: 'amd'
-		definition: false
+	# modules:
+	# 	wrapper: 'amd'
+	# 	definition: false
 
 	server:
 		path: 'server.coffee'
