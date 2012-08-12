@@ -1,4 +1,4 @@
-# Brunch with Chaplin and Node ( Matt Ma edition based on [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin) )
+# Brunch with Chaplin and Node ( based on [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin) )
 
 Huge Thanks to [Paul Miller](https://github.com/paulmillr) for making the project -- [Brunch](http://brunch.io/)
 
@@ -11,7 +11,7 @@ Requires Brunch 1.4+.
 ## Getting started
 * Create new project via executing
 
-`brunch new <project name> -s https://github.com/mattma/Brunch-with-Chaplin-and-Node.git || local-path`.
+`brunch new <project name> -s https://github.com/mattma/Brunch-with-Chaplin-and-Node.git`.
 
 * Build the project with `brunch b` or `brunch w`.
 * Open the `public/` dir to see the result.
@@ -31,17 +31,18 @@ except a few changes:
 * Added authentication abstractions (`SessionController`, `LoginView` etc).
 * CommonJS is used instead of AMD, because it's easier to use & debug.
 
-Difference from [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin)
+## Difference from [Brunch with Chaplin](https://github.com/paulmillr/brunch-with-chaplin)_
 
 * Updated to jQuery 1.8.0
+* added [json2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js) to take care JSON object
 * Added [lodash-0.4.2.js](http://lodash.com) instead of underscore 1.3.3
-* Do not include console-helper.js by default when project builds
+* Removed console-helper.js from original repo
 
-## Features
 * HTML5Boilerplate 3.0.3 html & css are included.
-* CoffeeScript + Stylus + Handlebars as app languages
-(you can change this to anything you want)
-* Backbone as main framework
+* CoffeeScript + Sass + Jade + Handlebars as app languages
+* NoSQL CouchDB supports out of the box
+* Add `cake docs` function to generate documentations
+
 * Cross-module communication using the Mediator and Publish/Subscribe patterns
 * Controllers for managing individual UI views
 * Rails-style routes which map URLs to controller actions
@@ -53,6 +54,7 @@ enforce conventions
 * A collection view for easy and intelligent list rendering
 * Client-side authentication using service providers like Facebook, Google
 and Twitter
+
 
 ## License
 The MIT license.
