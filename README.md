@@ -37,12 +37,10 @@ except a few changes:
 * added [json2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js) to take care JSON object
 * Added [lodash-0.4.2.js](http://lodash.com) instead of underscore 1.3.3
 * Removed console-helper.js from original repo
-
 * HTML5Boilerplate 3.0.3 html & css are included.
 * CoffeeScript + Sass + Jade + Handlebars as app languages
 * NoSQL CouchDB supports out of the box
 * Add `cake docs` function to generate documentations
-
 * Cross-module communication using the Mediator and Publish/Subscribe patterns
 * Controllers for managing individual UI views
 * Rails-style routes which map URLs to controller actions
