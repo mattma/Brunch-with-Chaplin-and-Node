@@ -3,12 +3,13 @@ express = require 'express'
 routes = require './private/routes/routes'
 cradle = require 'cradle'
 db_access = require './private/db/auth'
+config = require './config'
 
 app = module.exports = express()
 
 VIEWS_PATH = __dirname + '/private/views'
 PUBLIC_PATH = __dirname + '/public'
-PORT = process.env.VMC_APP_PORT or 3000
+PORT = config.config.server.port or process.env.VMC_APP_PORT or 3000
 
 # Configuration
 app.configure( ->
@@ -55,5 +56,5 @@ app.get '/', routes.home  #routes.home: /routes/routes.js => exports.home()
 
 app.startServer =  ->
 	app.listen PORT, ->
-		console.log "Express server listening on port %d in %s mode", process.env.VMC_APP_PORT or 3000, app.settings.env
+		console.log "Express server listening on port %d in %s mode", PORT, app.settings.env
 
