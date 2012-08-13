@@ -4,142 +4,142 @@ User = require 'models/user'
 LoginView = require 'views/login_view'
 
 module.exports = class SessionController extends Controller
-  # Service provider instances as static properties
-  # This just hardcoded here to avoid async loading of service providers.
-  # In the end you might want to do this.
-  @serviceProviders = {
-    # facebook: new Facebook()
-  }
+	# Service provider instances as static properties
+	# This just hardcoded here to avoid async loading of service providers.
+	# In the end you might want to do this.
+	@serviceProviders = {
+		# facebook: new Facebook()
+	}
 
-  # Was the login status already determined?
-  loginStatusDetermined: false
+	# Was the login status already determined?
+	loginStatusDetermined: false
 
-  # This controller governs the LoginView
-  loginView: null
+	# This controller governs the LoginView
+	loginView: null
 
-  # Current service provider
-  serviceProviderName: null
+	# Current service provider
+	serviceProviderName: null
 
-  initialize: ->
-    # Login flow events
-    @subscribeEvent 'serviceProviderSession', @serviceProviderSession
+	initialize: ->
+		# Login flow events
+		@subscribeEvent 'serviceProviderSession', @serviceProviderSession
 
-    # Handle login
-    @subscribeEvent 'logout', @logout
-    @subscribeEvent 'userData', @userData
+		# Handle login
+		@subscribeEvent 'logout', @logout
+		@subscribeEvent 'userData', @userData
 
-    # Handler events which trigger an action
+		# Handler events which trigger an action
 
-    # Show the login dialog
-    @subscribeEvent '!showLogin', @showLoginView
-    # Try to login with a service provider
-    @subscribeEvent '!login', @triggerLogin
-    # Initiate logout
-    @subscribeEvent '!logout', @triggerLogout
+		# Show the login dialog
+		@subscribeEvent '!showLogin', @showLoginView
+		# Try to login with a service provider
+		@subscribeEvent '!login', @triggerLogin
+		# Initiate logout
+		@subscribeEvent '!logout', @triggerLogout
 
-    # Determine the logged-in state
-    @getSession()
+		# Determine the logged-in state
+		@getSession()
 
-  # Load the libraries of all service providers
-  loadServiceProviders: ->
-    for name, serviceProvider of SessionController.serviceProviders
-      serviceProvider.load()
+	# Load the libraries of all service providers
+	loadServiceProviders: ->
+		for name, serviceProvider of SessionController.serviceProviders
+			serviceProvider.load()
 
-  # Instantiate the user with the given data
-  createUser: (userData) ->
-    mediator.user = new User userData
+	# Instantiate the user with the given data
+	createUser: (userData) ->
+		mediator.user = new User userData
 
-  # Try to get an existing session from one of the login providers
-  getSession: ->
-    @loadServiceProviders()
-    for name, serviceProvider of SessionController.serviceProviders
-      serviceProvider.done serviceProvider.getLoginStatus
+	# Try to get an existing session from one of the login providers
+	getSession: ->
+		@loadServiceProviders()
+		for name, serviceProvider of SessionController.serviceProviders
+			serviceProvider.done serviceProvider.getLoginStatus
 
-  # Handler for the global !showLoginView event
-  showLoginView: ->
-    return if @loginView
-    @loadServiceProviders()
-    @loginView = new LoginView
-      serviceProviders: SessionController.serviceProviders
+	# Handler for the global !showLoginView event
+	showLoginView: ->
+		return if @loginView
+		@loadServiceProviders()
+		@loginView = new LoginView
+			serviceProviders: SessionController.serviceProviders
 
-  # Handler for the global !login event
-  # Delegate the login to the selected service provider
-  triggerLogin: (serviceProviderName) =>
-    serviceProvider = SessionController.serviceProviders[serviceProviderName]
+	# Handler for the global !login event
+	# Delegate the login to the selected service provider
+	triggerLogin: (serviceProviderName) =>
+		serviceProvider = SessionController.serviceProviders[serviceProviderName]
 
-    # Publish an event in case the provider library could not be loaded
-    unless serviceProvider.isLoaded()
-      mediator.publish 'serviceProviderMissing', serviceProviderName
-      return
+		# Publish an event in case the provider library could not be loaded
+		unless serviceProvider.isLoaded()
+			mediator.publish 'serviceProviderMissing', serviceProviderName
+			return
 
-    # Publish a global loginAttempt event
-    mediator.publish 'loginAttempt', serviceProviderName
+		# Publish a global loginAttempt event
+		mediator.publish 'loginAttempt', serviceProviderName
 
-    # Delegate to service provider
-    serviceProvider.triggerLogin()
+		# Delegate to service provider
+		serviceProvider.triggerLogin()
 
-  # Handler for the global serviceProviderSession event
-  serviceProviderSession: (session) =>
-    # Save the session provider used for login
-    @serviceProviderName = session.provider.name
+	# Handler for the global serviceProviderSession event
+	serviceProviderSession: (session) =>
+		# Save the session provider used for login
+		@serviceProviderName = session.provider.name
 
-    # Hide the login view
-    @disposeLoginView()
+		# Hide the login view
+		@disposeLoginView()
 
-    # Transform session into user attributes and create a user
-    session.id = session.userId
-    delete session.userId
-    @createUser session
+		# Transform session into user attributes and create a user
+		session.id = session.userId
+		delete session.userId
+		@createUser session
 
-    @publishLogin()
+		@publishLogin()
 
-  # Publish an event to notify all application components of the login
-  publishLogin: ->
-    @loginStatusDetermined = true
+	# Publish an event to notify all application components of the login
+	publishLogin: ->
+		@loginStatusDetermined = true
 
-    # Publish a global login event passing the user
-    mediator.publish 'login', mediator.user
-    mediator.publish 'loginStatus', true
+		# Publish a global login event passing the user
+		mediator.publish 'login', mediator.user
+		mediator.publish 'loginStatus', true
 
-  # Logout
-  # ------
+	# Logout
+	# ------
 
-  # Handler for the global !logout event
-  triggerLogout: ->
-    # Just publish a logout event for now
-    mediator.publish 'logout'
+	# Handler for the global !logout event
+	triggerLogout: ->
+		# Just publish a logout event for now
+		mediator.publish 'logout'
 
-  # Handler for the global logout event
-  logout: =>
-    @loginStatusDetermined = true
+	# Handler for the global logout event
+	logout: =>
+		@loginStatusDetermined = true
 
-    @disposeUser()
+		@disposeUser()
 
-    # Discard the login info
-    @serviceProviderName = null
+		# Discard the login info
+		@serviceProviderName = null
 
-    # Show the login view again
-    @showLoginView()
+		# Show the login view again
+		@showLoginView()
 
-    mediator.publish 'loginStatus', false
+		mediator.publish 'loginStatus', false
 
-  # Handler for the global userData event
-  # -------------------------------------
+	# Handler for the global userData event
+	# -------------------------------------
 
-  userData: (data) ->
-    mediator.user.set data
+	userData: (data) ->
+		mediator.user.set data
 
-  # Disposal
-  # --------
+	# Disposal
+	# --------
 
-  disposeLoginView: ->
-    return unless @loginView
-    @loginView.dispose()
-    @loginView = null
+	disposeLoginView: ->
+		return unless @loginView
+		@loginView.dispose()
+		@loginView = null
 
-  disposeUser: ->
-    return unless mediator.user
-    # Dispose the user model
-    mediator.user.dispose()
-    # Nullify property on the mediator
-    mediator.user = null
+	disposeUser: ->
+		return unless mediator.user
+		# Dispose the user model
+		mediator.user.dispose()
+		# Nullify property on the mediator
+		mediator.user = null

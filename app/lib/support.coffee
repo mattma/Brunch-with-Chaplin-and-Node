@@ -8,6 +8,6 @@ utils = require 'lib/utils'
 support = utils.beget Chaplin.support
 
 # _(support).extend
-  # someMethod: ->
+	# someMethod: ->
 
 module.exports = support

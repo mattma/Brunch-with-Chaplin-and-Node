@@ -4,5 +4,5 @@ sinonChai = require 'sinon-chai'
 chai.use sinonChai
 
 module.exports =
-  expect: chai.expect
-  sinon: require 'sinon'
+	expect: chai.expect
+	sinon: require 'sinon'
