@@ -53,6 +53,35 @@ enforce conventions
 * Client-side authentication using service providers like Facebook, Google
 and Twitter
 
+## Make the script AMD compatible
+
+1. Option 1
+
+```
+	(function (factory) {
+	  if (typeof exports === 'object') {
+	    module.exports = factory(require('backbone'), require('underscore'));
+	  } else if (typeof define === 'function' && define.amd) {
+	    define(['backbone', 'underscore'], factory);
+	  } else if (typeof require === 'function' && typeof require.define === 'function') {
+	    require.define({ 'backbone-validation': function(exports, require, module) {
+	        module.exports = factory(require('backbone'), require('underscore'));
+	     }});
+	  }
+	}(function (Backbone, _) {})
+```
+
+2. Option 2
+
+```
+	// ...
+	// backbone-validation.js source code
+
+	require.define({'backbone-validation': function(exports, require, module) {module.exports = Backbone.Validation;}});
+
+	// your file.js
+	Validation = require 'backbone-validation'
+```
 
 ## License
 The MIT license.
