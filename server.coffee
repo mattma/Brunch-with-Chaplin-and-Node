@@ -32,8 +32,8 @@ app.configure 'production', ->
 conn = new (cradle.Connection)(
 	cache: true
 	raw: false
-	host: "http://127.0.0.1"
-	port: 5984
+	host: db_access.auth.host
+	port: db_access.auth.port
 	auth:
 		username: db_access.auth.username
 		password: db_access.auth.password

@@ -83,6 +83,21 @@ and Twitter
 	Validation = require 'backbone-validation'
 ```
 
+## Deploy: update package.json
+
+* Change the name field
+* Change the description field
+* Change the repository field
+* Change the version field
+* Update the scripts tags
+```
+	"scripts": {
+		"start": "./server.js"
+	}
+```
+* Add subdomain field
+
+
 ## License
 The MIT license.
 
