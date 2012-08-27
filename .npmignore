@@ -1,0 +1,14 @@
+*.markdown
+*.md
+.git*
+install.sh
+Makefile
+Cakefile
+generators/
+benchmarks/
+docs/
+examples/
+support/
+test/
+.DS_Store
+
