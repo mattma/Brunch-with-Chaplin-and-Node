@@ -18,7 +18,7 @@ exports.config =
 				before: [
 					'vendor/scripts/json2.js',
 					'vendor/scripts/jquery-1.8.0.js',
-					'vendor/scripts/lodash-0.4.2.js',
+					'vendor/scripts/lodash-0.5.2.js',
 					'vendor/scripts/backbone-0.9.2.js'
 				]
 
